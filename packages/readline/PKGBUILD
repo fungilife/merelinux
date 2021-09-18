@@ -11,7 +11,7 @@ url='http://www.gnu.org/software/readline/'
 license=('BSD')
 groups=()
 depends=()
-makedepends=(libncurses-dev)
+makedepends=(libncurses-dev ld-musl-x86_64.so.1)
 options=()
 changelog=ChangeLog
 
@@ -41,7 +41,8 @@ package_readline() {
         usr/lib/*.so.*
     )
     depends=(
-        libc.so
+#        libc.so
+	ld-musl-x86_64.so.1
     )
     provides=(
         libreadline.so.8
@@ -53,11 +54,12 @@ package_readline-dev() {
     pkgfiles=(
         usr/include
         usr/lib/*.a
-        usr/lib/*.so
+#        usr/lib/*.so
         usr/share/man/man3
     )
     depends=(
         "readline=${pkgver}"
+	ld-musl-x86_64.so.1
     )
     std_split_package
 }
